@@ -50,8 +50,8 @@ class Game extends Produk{
 $produk1 = new Komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000, 100, 0);
 $produk2 = new Game("Uncharted", "Neil Druckmann", "Sony Computer", 250000, 0, 50);
 
-echo "Komik : " . $produk1->getInfoKomik();
+echo $produk1->getInfoKomik();
 echo "<hr>";
-echo "Game : " . $produk2->getInfoGame();
+echo $produk2->getInfoGame();
 
 ?>
