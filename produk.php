@@ -17,6 +17,7 @@ class Produk{
 
 }
 
+// Membuat instansiasi
 $produk1 = new Produk();
 $produk2 = new Produk();
 
