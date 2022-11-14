@@ -1,0 +1,114 @@
+<?php
+
+class Produk{
+    // property
+    private $judul, // oleh karena itu, visibility penting agar tidak mudah menambahkan suatu property scr asal.
+            $penulis,
+            $penerbit;
+           
+    protected $harga, 
+              $diskon;
+
+    // bisa diberikan default
+    public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = "harga") { 
+        // Menggunakan underscore, karena konstruktor merupakan magic method yg dimiliki php.
+
+        $this->judul = $judul;
+        $this->penulis = $penulis;
+        $this->penerbit = $penerbit;
+        $this->harga = $harga;
+
+    } // ini akan selalu dijalankan, setiap melakukan instansiasi kelas.
+    
+    public function setJudul($judul) {
+        if( !is_string($judul) ){
+            throw new Exception("Judul harus string!");
+        }
+        $this->judul = $judul;
+    }
+
+    public function getJudul() {
+        return $this->judul;
+    }
+
+    public function setPenerbit($penerbit) {
+        $this->penerbit = $penerbit;
+    }
+
+    public function getPenerbit() {
+        return $this->penerbit;
+    }
+
+    public function setPenulis($penulis) {
+        $this->penulis = $penulis;
+    }
+
+    public function getPenulis() {
+        return $this->penulis;
+    }
+
+    public function getLabel(){
+        return "$this->penulis, $this->penerbit";
+    }
+
+    public function getInfoProduk(){
+        $str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
+        return $str;
+    }
+
+}
+
+class Komik extends Produk{
+public $jmlHalaman;
+
+    public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman = 0) {
+        parent::__construct($judul, $penulis, $penerbit, $harga);
+        $this->jmlHalaman = $jmlHalaman;
+    }
+
+    public function getInfoProduk() {
+        $str = "Komik : " .  parent::getInfoProduk() . " - {$this->jmlHalaman} Halaman.";
+        return $str;
+    }
+}
+
+class Game extends Produk{
+public $wktMain;
+
+    public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $wktMain = 0) {
+        parent::__construct($judul, $penulis, $penerbit, $harga);
+        $this->wktMain = $wktMain;
+    }
+
+    public function setDiskon( $diskon ) {
+        $this->diskon = $diskon;
+    }
+
+    public function getHarga() {
+        return $this->harga - ($this->harga * $this->diskon / 100); 
+    }
+
+    public function getInfoProduk() {
+        $str = "Game : " . parent::getInfoProduk() . " ~ {$this->wktMain} Jam.";
+        return $str;
+    }
+}
+
+// Membuat instansiasi
+$produk1 = new Komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000, 100);
+$produk2 = new Game("Uncharted", "Neil Druckmann", "Sony Computer", 250000, 50);
+
+echo $produk1->getInfoProduk();
+echo "<hr>";
+
+echo $produk2->getInfoProduk();
+echo "<hr>";
+
+$produk2->setDiskon(50);
+echo $produk2->getHarga();
+echo "<hr>";
+
+$produk2->setJudul("Testing"); // proses pengambilan judul yang d private
+echo $produk2->getJudul();
+
+?>
