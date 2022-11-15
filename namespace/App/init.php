@@ -9,8 +9,8 @@ require_once 'Produk/User.php';
 
 require_once 'Service/User.php';
 
-spl_autoload_register(function( $class ){
-    require_once 'Produk/' . $class . '.php';
-});
+// spl_autoload_register(function( $class ){
+//     require_once 'Produk/' . $class . '.php';
+// });
 
 ?>
