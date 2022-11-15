@@ -6,7 +6,7 @@
 // require_once 'APP/Produk/Game.php';
 // require_once 'APP/Produk/CetakInfoProduk.php'; // Atau bisa dipindahkan ke file lain, jd tinggal manggil 1 file
 
-require_once 'APP/Produk/init.php';
+require_once 'App/Produk/init.php';
 
 $produk1 = new Komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000, 100);
 $produk2 = new Game("Uncharted", "Neil Druckmann", "Sony Computer", 250000, 50);
