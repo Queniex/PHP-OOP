@@ -7,7 +7,7 @@
 
 Abstract class Produk{
     // property
-    protected $judul, // oleh karena itu, visibility penting agar tidak mudah menambahkan suatu property scr asal.
+    Private $judul, // oleh karena itu, visibility penting agar tidak mudah menambahkan suatu property scr asal.
             $penulis,
             $penerbit;
            
@@ -77,7 +77,7 @@ Abstract class Produk{
 
 }
 
-class Komik extends Produk implements InfoProduk{
+class Komik extends Produk{
 public $jmlHalaman;
 
     public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman = 0) {
@@ -96,7 +96,7 @@ public $jmlHalaman;
     }
 }
 
-class Game extends Produk implements InfoProduk{
+class Game extends Produk{
 public $wktMain;
 
     public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $wktMain = 0) {
@@ -142,4 +142,3 @@ $cetakProduk->tambahProduk($produk1);
 $cetakProduk->tambahProduk($produk1);
 echo $cetakProduk->cetak();
 ?>
-
